@@ -2,13 +2,23 @@ import React from 'react'
 import Header from './components/Header'
 
 
-function App(){
+function App() {
     return (
         <>
-            <Header/>
-            <Header/>
-            <Header/>
-            <Header/>
+            <Header title="ReactJs">
+                <ul>
+                    <li>Homepage</li>
+                    <li>Projects</li>
+                </ul>
+            </Header>
+            <Header title="NodeJs">
+                <ul>
+                    <li>Homepage</li>
+                    <li>Projects</li>
+                    <li>Login</li>
+                </ul>
+            </Header>
+
 
         </>
     )
