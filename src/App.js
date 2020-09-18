@@ -6,14 +6,15 @@ import './App.css'
 import Header from './components/Header'
 
 function App() {
-    const [projects, setProjects] = useState(["Back-end", "Front-end"])
+    const [projects, setProjects] = useState([])
     //useState retorna um array com duas posições: 
     // 1 - Variável com seu valor inicial
     // 2 - Uma função para atualizar esse valor
 
     useEffect(() => {
         api.get('projects').then(response => {
-            console.log(response)
+            setProjects(response.data)
+            
         })
     }, [])
     //o useEffect recebe dois parâmetros:
@@ -37,7 +38,7 @@ function App() {
 
             <ul>
                 {projects.map(project => (
-                    <li key={project}>{project}</li>
+                    <li key={project.id}>{project.curso}</li>
                     //quando é feita uma iteração no react, que percorrido um vetor 
                     //o react precisa que seja identificado no primeiro elemento, 
                     //uma propriedade chamada key. Aí deverá ser informado a informação 
