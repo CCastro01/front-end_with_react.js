@@ -1,16 +1,27 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
+import React, { useState, useEffect } from 'react'
+import api from './services/api'
 
 import './App.css'
-import backgroundImage from './assets/background.jpeg'
 
+import Header from './components/Header'
 
 function App() {
     const [projects, setProjects] = useState(["Back-end", "Front-end"])
-
     //useState retorna um array com duas posições: 
     // 1 - Variável com seu valor inicial
     // 2 - Uma função para atualizar esse valor
+
+    useEffect(() => {
+        api.get('projects').then(response => {
+            console.log(response)
+        })
+    }, [])
+    //o useEffect recebe dois parâmetros:
+    // 1 - a função que ele deve disparar
+    // 2 - quando essa função deve ser disparada
+    // no ARRAY DE DEPENDÊNCIAS - 
+    //quando o que estiver dentro do array de dependências, for alterado, a função vai ser acionada
+    //se estiver vazio, essa função vai ser disparada apenas uma vez
 
     function handleAddProject(){
         // projects.push(`New data${Date.now()}`)
@@ -23,8 +34,6 @@ function App() {
     return (
         <>
             <Header title="Projects"/>
-
-            <img width={500} src={backgroundImage} alt=""/>
 
             <ul>
                 {projects.map(project => (
