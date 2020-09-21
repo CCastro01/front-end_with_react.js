@@ -24,12 +24,18 @@ function App() {
     //quando o que estiver dentro do array de dependências, for alterado, a função vai ser acionada
     //se estiver vazio, essa função vai ser disparada apenas uma vez
 
-    function handleAddProject(){
+    async function handleAddProject(){
         // projects.push(`New data${Date.now()}`)
+        // setProjects([...projects, `New data${Date.now()}`])
 
-        setProjects([...projects, `New data${Date.now()}`])
+        const response = await api.post("projects", {
+            "nome": ` NodeJs${Date.now()}`,
+            "curso": "Dominando os fundamentos do NodeJs"
+        })
 
-        console.log(projects)
+        const project = response.data
+        setProjects([...projects, project])
+
     }
 
     return (
